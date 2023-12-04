@@ -7,8 +7,8 @@ import (
 )
 
 func init() {
-
 	inits.LoadEnv()
+	inits.DBInit()
 }
 
 func main() {
