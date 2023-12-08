@@ -3,6 +3,7 @@ package main
 import (
 	"ecommerce_api/controllers"
 	"ecommerce_api/inits"
+	"ecommerce_api/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -29,11 +30,17 @@ func main() {
 	r.DELETE("/products/:id", controllers.DeleteProduct)
 
 	// Category Routes
-	r.POST("/categories", controllers.CreateCategory)
-	r.GET("/categories", controllers.GetCategorys)
-	r.GET("/categories/:id", controllers.GetCategory)
-	r.PUT("/categories/:id", controllers.UpdateCategory)
-	r.DELETE("/categories/:id", controllers.DeleteCategory)
+	r.POST("/categories", middlewares.RequireAuth, controllers.CreateCategory)
+	r.GET("/categories", middlewares.RequireAuth, controllers.GetCategorys)
+	r.GET("/categories/:id", middlewares.RequireAuth, controllers.GetCategory)
+	r.PUT("/categories/:id", middlewares.RequireAuth, controllers.UpdateCategory)
+	r.DELETE("/categories/:id", middlewares.RequireAuth, controllers.DeleteCategory)
+
+	//User Routes
+	r.POST("/user", controllers.Signup)
+	r.POST("/login", controllers.Login)
+	r.GET("/users", middlewares.RequireAuth, controllers.GetUsers)
+	r.GET("/logout", controllers.Logout)
 
 	r.Run()
 }
