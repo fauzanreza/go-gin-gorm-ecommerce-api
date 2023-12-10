@@ -42,5 +42,11 @@ func main() {
 	r.GET("/users", middlewares.RequireAuth, controllers.GetUsers)
 	r.GET("/logout", controllers.Logout)
 
+	// Cart Routes
+	r.POST("/cart", middlewares.RequireAuth, controllers.CreateCart)
+	r.GET("/cart", middlewares.RequireAuth, controllers.GetCarts)
+	r.GET("/cart/:id", middlewares.RequireAuth, controllers.GetCart)
+	r.DELETE("/cart/:id", middlewares.RequireAuth, controllers.DeleteCart)
+
 	r.Run()
 }

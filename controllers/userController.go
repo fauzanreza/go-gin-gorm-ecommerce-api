@@ -90,7 +90,7 @@ func Login(ctx *gin.Context) {
 
 	ctx.SetSameSite(http.SameSiteLaxMode)
 	ctx.SetCookie("Authorization", tokenString, 3600*24*30, "", "localhost", false, true)
-	ctx.JSON(200, gin.H{"data": "You are login successfully"})
+	ctx.JSON(200, gin.H{"data": "You are login successfully", "token": tokenString})
 }
 
 func GetUsers(ctx *gin.Context) {
