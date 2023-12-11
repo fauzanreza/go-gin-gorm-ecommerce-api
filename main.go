@@ -43,10 +43,16 @@ func main() {
 	r.GET("/logout", controllers.Logout)
 
 	// Cart Routes
-	r.POST("/cart", middlewares.RequireAuth, controllers.CreateCart)
-	r.GET("/cart", middlewares.RequireAuth, controllers.GetCarts)
-	r.GET("/cart/:id", middlewares.RequireAuth, controllers.GetCart)
-	r.DELETE("/cart/:id", middlewares.RequireAuth, controllers.DeleteCart)
+	r.POST("/carts", middlewares.RequireAuth, controllers.CreateCart)
+	r.GET("/carts", middlewares.RequireAuth, controllers.GetCarts)
+	r.GET("/carts/:id", middlewares.RequireAuth, controllers.GetCart)
+	r.DELETE("/carts/:id", middlewares.RequireAuth, controllers.DeleteCart)
+
+	// CartItem Routes
+	r.POST("/cart_items", middlewares.RequireAuth, controllers.CreateCartItem)
+	r.GET("/cart_items", middlewares.RequireAuth, controllers.GetCartItems)
+	r.GET("/cart_items/:id", middlewares.RequireAuth, controllers.GetCartItem)
+	r.DELETE("/cart_items/:id", middlewares.RequireAuth, controllers.DeleteCartItem)
 
 	r.Run()
 }
