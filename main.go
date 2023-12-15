@@ -54,5 +54,11 @@ func main() {
 	r.GET("/cart_items/:id", middlewares.RequireAuth, controllers.GetCartItem)
 	r.DELETE("/cart_items/:id", middlewares.RequireAuth, controllers.DeleteCartItem)
 
+	// Order Routes
+	r.POST("/orders", middlewares.RequireAuth, controllers.CreateOrder)
+	r.GET("/orders", middlewares.RequireAuth, controllers.GetOrders)
+	r.GET("/orders/:id", middlewares.RequireAuth, controllers.GetOrder)
+	r.DELETE("/orders/:id", middlewares.RequireAuth, controllers.DeleteOrder)
+
 	r.Run()
 }
